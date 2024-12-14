@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: autoscaler-config
+data:
+  PROMETHEUS_IP: # -- Please enter the deployed Prometheus IP address here (e.g., http://<prometheus-ip>:<port>/). -- #
+  NAMESPACE: # -- Provide the namespace of the target application for scaling. -- #
+  DEPLOYMENT: # -- Provide the deployment name of the target application for scaling. -- #
+  CONTAINER: # -- Indicate the container name within the target application's deployment. -- #
+  APP_NAME: # -- Enter the application name to identify the target application for scaling. -- #
+  TARGET_CPU_UTILIZATION: '75' # -- Set the initial CPU threshold percentage for the autoscaler to make scaling decisions. -- #
+  MIN_REPLICAS: '1' # -- Define the minimum number of replicas for the target application. -- #
+  MAX_REPLICAS: '16' # -- Define the maximum number of replicas for the target application. -- #
+  METRIC_PERIOD: '60' # -- Specify the metric collection period in seconds for the autoscaler to evaluate scaling. -- #

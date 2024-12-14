@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lare-hpa-autoscaler
+  namespace: autoscale
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lare-hpa-autoscaler
+  template:
+    metadata:
+      labels:
+        app: lare-hpa-autoscaler
+    spec:
+      serviceAccountName: lare-hpa-autoscaler
+      containers:
+        - name: lare-hpa-autoscaler
+          image: # -- Please provide the path to the LARE-HPA built image here. (e.g., username/lare-hpa-autoscaler:latest )-- # 
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: autoscaler-config
+          resources:
+            requests:
+              cpu: "1000m"
+              memory: "1024Mi"
+            limits:
+              cpu: "1000m"
+              memory: "1024Mi"
+          volumeMounts:
+            - name: log-data
+              mountPath: /app/log
+      volumes:
+        - name: log-data
+          hostPath:
+            path: # -- Please set the path here. (e.g., /home/log) -- #
+            type: DirectoryOrCreate
