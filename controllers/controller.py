@@ -61,8 +61,6 @@ class HorizontalPodAutoscalerController:
         scaling_process.start()
         stabilization_coordinate_process.start()
 
-
-
     def __scaling(self):
         with self.current_CDT_counter.get_lock():
             self.current_CDT_counter.value = self.current_CDT_counter.value - 1
@@ -73,11 +71,9 @@ class HorizontalPodAutoscalerController:
             if cpu_utilization is not None:
                 self.autoscaler_logger.info(f"Current CPU Utilization: {cpu_utilization}%")
 
-                # 현재 배포된 파드 수 가져오기
                 current_replicas = get_replicas(self.namespace, self.deployment_name, self.metrics_period)
                 self.autoscaler_logger.info(f"Current Replicas: {current_replicas}")
 
-                # HPA 계산법에 따른 새로운 replica 수 계산
                 with self.target_cpu_utilization.get_lock():
                     desired_replicas = math.ceil((current_replicas * cpu_utilization) / self.target_cpu_utilization.value)
                 desired_replicas = max(self.min_replicas, min(desired_replicas, self.max_replicas))
@@ -85,14 +81,11 @@ class HorizontalPodAutoscalerController:
 
                 with self.current_CDT_counter.get_lock():
                     if desired_replicas != current_replicas:
-                        # 증가는 조건없이
                         if desired_replicas > current_replicas:
                             set_replicas(self.namespace, self.deployment_name, desired_replicas)
                             with self.desired_CDT_counter.get_lock():
                                 self.current_CDT_counter.value = self.desired_CDT_counter.value
-                        # 감소의 경우
                         else:
-                            # CDT 상태가 아닌경우(scaling 가능상태)
                             if self.current_CDT_counter.value < 1:
                                 slope = get_new_stabilization_window_period(self.app_name, self.metrics_period)
                                 if slope < 1: # -1 or 0
