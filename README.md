@@ -72,7 +72,7 @@ If you find the provided code or the corresponding paper useful, please consider
 }
 ```
 ```
-Kim, D., Kim, H., Lee, E., Yu, H. (2025). LARE-HPA: Co-optimizing Latency and Resource Efficiency for Horizontal Pod Autoscaling in Kubernetes. In: Gaaloul, W., Sheng, M., Yu, Q., Yangui, S. (eds) Service-Oriented Computing. ICSOC 2024. Lecture Notes in Computer Science, vol 15405. Springer, Singapore. https://doi.org/10.1007/978-981-96-0808-9_2
+Kim, D., Kim, H., Lee, E., Yu, H. (2024). LARE-HPA: Co-optimizing Latency and Resource Efficiency for Horizontal Pod Autoscaling in Kubernetes. In: Gaaloul, W., Sheng, M., Yu, Q., Yangui, S. (eds) Service-Oriented Computing. ICSOC 2024. Lecture Notes in Computer Science, vol 15405. Springer, Singapore. https://doi.org/10.1007/978-981-96-0808-9_2
 ```
 
 This paper is available at : [Paper](https://link.springer.com/chapter/10.1007/978-981-96-0808-9_2)
