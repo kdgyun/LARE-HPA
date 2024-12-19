@@ -51,7 +51,7 @@ To completely remove the scaler from your Kubernetes cluster, execute the follow
 ## Citation
 If you find the provided code or the corresponding paper useful, please consider citing the paper:
 ```ruby
-@InProceedings{
+@InProceedings{kim2024lare,
   author    = {Kim, Donggyun and
                Kim, Hyungjun and
                Lee, Eunyoung and
@@ -61,11 +61,11 @@ If you find the provided code or the corresponding paper useful, please consider
                Yu, Qi and 
                Yangui, Sami},
   title     = {LARE-HPA: Co-optimizing Latency and Resource Efficiency for Horizontal Pod Autoscaling in Kubernetes},
-  booktitle = {Service-Oriented Computing},
+  booktitle = {International Conference on Service-Oriented Computing},
   series    = {Lecture Notes in Computer Science},
   volume    = {15405},
   pages     = {19--34},
-  year      = {2025},
+  year      = {2024},
   publisher = {Springer Nature Singapore},
   address   = {Singapore},
   doi       = {10.1007/978-981-96-0808-9_2}
