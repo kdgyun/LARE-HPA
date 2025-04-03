@@ -67,7 +67,7 @@ class HorizontalPodAutoscalerController:
             if self.current_CDT_counter.value < 1:
                 self.current_CDT_counter.value = 0
         try:
-            cpu_utilization = get_cpu_utilization(self.namespace, self.deployment_name, self.container_name, self.metrics_period)
+            cpu_utilization = get_cpu_utilization(self.deployment_name, self.container_name, self.metrics_period)
             if cpu_utilization is not None:
                 self.autoscaler_logger.info(f"Current CPU Utilization: {cpu_utilization}%")
 
