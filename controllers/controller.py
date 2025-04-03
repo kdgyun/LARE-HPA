@@ -113,7 +113,7 @@ class HorizontalPodAutoscalerController:
             if is_stable == True:
                 if self.start_time is None:
                     self.start_time = datetime.now()
-                new_threshold = get_new_threshold(namespace=self.namespace, deployment_name=self.deployment_name, app_name=self.app_name, start_time=self.start_time, period=self.metrics_period, latest_requests=requests)
+                new_threshold = get_new_threshold(deployment_name=self.deployment_name, app_name=self.app_name, start_time=self.start_time, period=self.metrics_period, latest_requests=requests)
                 self.autoscaler_logger.info(f"model forecast_data : {requests}")
                 self.threshold_logger.info(f"new_threshold : {new_threshold[-1]}")
                 with self.target_cpu_utilization.get_lock():
